@@ -1,15 +1,21 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#142427"><title>JS Zero</title>  <script type="module" crossorigin src="./assets/game-frd_miBK.js"></script>
-  <link rel="modulepreload" crossorigin href="./assets/controllers-CoorMpMR.js">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#142427"><title>JS Zero</title>  <script type="module" crossorigin src="./assets/game-cUqVZ3e6.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/controllers-GZuwYbAa.js">
   <link rel="modulepreload" crossorigin href="./assets/three-qPNbMlDC.js">
-  <link rel="stylesheet" crossorigin href="./assets/controllers-Dcc6lX6r.css">
+  <link rel="stylesheet" crossorigin href="./assets/controllers-CHe7OawT.css">
 </head>
 <body>
   <div id="game"></div><div id="vignette"></div><div id="damage-flash"></div>
   <header><a class="wordmark" href="./" aria-label="JS Zero home"><span class="brand-icon">⋙</span> JS<span>ZERO</span></a><div class="header-actions"><a href="./controller.html" target="_blank" rel="noopener" class="icon-button">CONTROLLER ↗</a><button id="sound" class="icon-button" aria-label="Mute sound">SOUND ON</button></div></header>
   <main>
     <section id="menu" class="title-screen">
+      <div class="title-content"><h1>JS<br><span>ZERO</span></h1>
+      <div class="mode-switch" role="group" aria-label="Number of players"><button data-players="1" class="selected" aria-pressed="true">1 PLAYER</button><button data-players="2" aria-pressed="false">2 PLAYERS</button></div>
+      <div class="mode-switch difficulty-switch" role="group" aria-label="Difficulty"><button data-difficulty="easy" aria-pressed="true" title="Lighter damage, slower rivals">EASY</button><button data-difficulty="medium" aria-pressed="false" title="Original damage and rival speed">MEDIUM</button><button data-difficulty="hard" aria-pressed="false" title="Original damage, faster and steadier rivals">HARD</button></div>
+      <button id="start" class="primary">START →</button><button id="menu-saves" class="icon-button">SAVE / LOAD</button><p id="menu-status" role="status" aria-live="polite"></p><p id="setup-note" hidden></p>
+      <details class="play-options"><summary>Player names</summary><div id="names"><label>PLAYER 1<input id="name1" maxlength="18" value="Player 1" aria-label="Player 1 name"></label><label>PLAYER 2<input id="name2" maxlength="18" value="Player 2" aria-label="Player 2 name"></label></div><p>2 players take turns.</p></details></div>
+
       <aside class="keyboard-guide" aria-labelledby="keyboard-heading">
         <h2 id="keyboard-heading">Keyboard</h2>
         <div class="key-layout" aria-label="Driving keys arranged as on a keyboard">
@@ -25,12 +31,6 @@
         </dl>
         <p class="corner-tip">Steer + lean to corner fast.</p>
       </aside>
-      <div class="title-content"><h1>JS<br><span>ZERO</span></h1>
-      <div class="mode-switch" role="group" aria-label="Number of players"><button data-players="1" class="selected" aria-pressed="true">1 PLAYER</button><button data-players="2" aria-pressed="false">2 PLAYERS</button></div>
-      <div class="mode-switch difficulty-switch" role="group" aria-label="Difficulty"><button data-difficulty="easy" aria-pressed="true" title="Lighter damage, slower rivals">EASY</button><button data-difficulty="medium" aria-pressed="false" title="Original damage and rival speed">MEDIUM</button><button data-difficulty="hard" aria-pressed="false" title="Original damage, faster and steadier rivals">HARD</button></div>
-      <button id="start" class="primary">START →</button><button id="menu-saves" class="icon-button">SAVE / LOAD</button><p id="menu-status" role="status" aria-live="polite"></p><p id="setup-note" hidden></p>
-      <details class="play-options"><summary>Player names</summary><div id="names"><label>PLAYER 1<input id="name1" maxlength="18" value="Player 1" aria-label="Player 1 name"></label><label>PLAYER 2<input id="name2" maxlength="18" value="Player 2" aria-label="Player 2 name"></label></div><p>2 players take turns.</p></details></div>
-
     </section>
     <section id="world-guide" hidden aria-label="World track guide" data-theme="desert">
       <nav id="world-tabs" aria-label="Worlds"></nav><div class="guide-heading"><span id="world-number">WORLD 1</span><h2 id="world-name">Sunscar Desert</h2><span id="guide-pilot"></span></div>
