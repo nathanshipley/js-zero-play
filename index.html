@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#142427"><title>JS Zero</title>  <script type="module" crossorigin src="./assets/game-frd_miBK.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/controllers-CoorMpMR.js">
+  <link rel="modulepreload" crossorigin href="./assets/three-qPNbMlDC.js">
+  <link rel="stylesheet" crossorigin href="./assets/controllers-Dcc6lX6r.css">
+</head>
+<body>
+  <div id="game"></div><div id="vignette"></div><div id="damage-flash"></div>
+  <header><a class="wordmark" href="./" aria-label="JS Zero home"><span class="brand-icon">⋙</span> JS<span>ZERO</span></a><div class="header-actions"><a href="./controller.html" target="_blank" rel="noopener" class="icon-button">CONTROLLER ↗</a><button id="sound" class="icon-button" aria-label="Mute sound">SOUND ON</button></div></header>
+  <main>
+    <section id="menu" class="title-screen">
+      <aside class="keyboard-guide" aria-labelledby="keyboard-heading">
+        <h2 id="keyboard-heading">Keyboard</h2>
+        <div class="key-layout" aria-label="Driving keys arranged as on a keyboard">
+          <div class="key-row"><span class="key-cap lean-key"><kbd>Q</kbd><small>Lean left</small></span><span class="key-cap drive-key"><kbd>W</kbd><small>Accelerate</small></span><span class="key-cap lean-key"><kbd>E</kbd><small>Lean right</small></span></div>
+          <div class="key-row lower-row"><span class="key-cap drive-key"><kbd>A</kbd><small>Left</small></span><span class="key-cap drive-key"><kbd>S</kbd><small>Brake</small></span><span class="key-cap drive-key"><kbd>D</kbd><small>Right</small></span></div>
+          <div class="key-row"><span class="key-cap space-key"><kbd>Space</kbd><small>Drift</small></span></div>
+        </div>
+        <p class="arrow-alternative">Arrow keys also drive</p>
+        <dl>
+          <div><dt><kbd>B</kbd></dt><dd>Lap boost</dd></div>
+          <div><dt><kbd>F</kbd></dt><dd>Missile</dd></div>
+          <div><dt><kbd>Esc</kbd></dt><dd>Pause</dd></div>
+        </dl>
+        <p class="corner-tip">Steer + lean to corner fast.</p>
+      </aside>
+      <div class="title-content"><h1>JS<br><span>ZERO</span></h1>
+      <div class="mode-switch" role="group" aria-label="Number of players"><button data-players="1" class="selected" aria-pressed="true">1 PLAYER</button><button data-players="2" aria-pressed="false">2 PLAYERS</button></div>
+      <div class="mode-switch difficulty-switch" role="group" aria-label="Difficulty"><button data-difficulty="easy" aria-pressed="true" title="Lighter damage, slower rivals">EASY</button><button data-difficulty="medium" aria-pressed="false" title="Original damage and rival speed">MEDIUM</button><button data-difficulty="hard" aria-pressed="false" title="Original damage, faster and steadier rivals">HARD</button></div>
+      <button id="start" class="primary">START →</button><button id="menu-saves" class="icon-button">SAVE / LOAD</button><p id="menu-status" role="status" aria-live="polite"></p><p id="setup-note" hidden></p>
+      <details class="play-options"><summary>Player names</summary><div id="names"><label>PLAYER 1<input id="name1" maxlength="18" value="Player 1" aria-label="Player 1 name"></label><label>PLAYER 2<input id="name2" maxlength="18" value="Player 2" aria-label="Player 2 name"></label></div><p>2 players take turns.</p></details></div>
+
+    </section>
+    <section id="world-guide" hidden aria-label="World track guide" data-theme="desert">
+      <nav id="world-tabs" aria-label="Worlds"></nav><div class="guide-heading"><span id="world-number">WORLD 1</span><h2 id="world-name">Sunscar Desert</h2><span id="guide-pilot"></span></div>
+      <div class="journey-map"><svg class="journey-land" viewBox="0 0 1000 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><pattern id="map-dots" width="36" height="36" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1" fill="currentColor" opacity=".2"/></pattern></defs><rect width="1000" height="470" fill="url(#map-dots)"/><path class="land-ridge" d="M-50 160 Q80 10 230 130 T500 90 T780 110 T1080 0 M-40 395 Q160 240 330 370 T700 390 T1080 280 M20 60 Q210 -30 350 20 M720 470 Q880 320 1060 390"/><path class="journey-road" d="M160 300 C280 330 300 130 500 160 S690 350 840 290"/><g class="map-decoration"><path d="M60 220l35-75 35 75z M880 135l30-70 35 70z M360 425l25-55 30 55z"/><circle cx="720" cy="75" r="18"/><circle cx="270" cy="100" r="9"/></g></svg><div id="track-nodes"></div></div>
+      <div class="guide-actions"><button id="guide-home" class="secondary">TITLE SCREEN</button><button id="guide-race" class="primary">RACE →</button></div>
+      <p id="journey-status" role="status" aria-live="polite"></p>
+    </section>
+    <section id="hud" hidden aria-label="Race dashboard"><div class="hud-top"><div class="pilot-panel"><div class="eyebrow" id="pilot">PLAYER 1 / SOLO RUN</div><div class="hull-label">HULL INTEGRITY <strong><span id="hp">100</span><small> HP</small></strong></div><div class="hp-track"><div id="hp-fill"></div></div></div><div class="race-place"><div class="position-panel"><span class="eyebrow">POSITION</span><strong><span id="position">8</span><small> / <span id="field-size">8</span></small></strong></div><div class="lap-panel"><span class="eyebrow">LAP</span><strong><span id="lap">01</span><small> / 03</small></strong></div></div><div class="time-panel"><span class="eyebrow">RACE TIME</span><strong id="time">00:00.00</strong><small>BEST LAP <span id="best-lap">— —</span></small></div></div><div id="race-message" role="status"></div><div id="countdown"></div><div id="launch-hint" role="status"></div><div class="hud-bottom"><div class="map-panel"><canvas id="minimap" width="240" height="190" aria-label="Track map"></canvas><span><span id="map-course">SUNSCAR CIRCUIT</span> <b id="map-number">01—01</b></span></div><div id="lean-status" hidden role="status"></div><div id="drift-meter" hidden><span id="drift-label">DRIFT</span><div class="drift-track"><div id="drift-fill"></div></div></div><div class="race-hints"><span><kbd>WASD</kbd> / <kbd>ARROWS</kbd> DRIVE</span><span><kbd>Q</kbd><kbd>E</kbd> LEAN</span><span><kbd>SPACE</kbd> DRIFT</span><span><kbd>B</kbd> BOOST</span><span><kbd>F</kbd> MISSILE</span><span><kbd>ESC</kbd> PAUSE</span></div><div class="speed-panel"><div id="missile-panel"><span>F · MISSILE</span><b id="missile-count">1</b></div><div id="boost-panel"><span id="boost-label">FINISH A LAP TO CHARGE</span><b><span id="boost-count">0</span> × BOOST</b><div class="boost-track"><div id="boost-gauge"></div></div></div><div id="momentum" hidden></div><div id="surface">ANTI-GRAV ONLINE</div><strong id="speed">000</strong><span>KM/H</span><div id="speed-line"></div></div></div></section>
+    <section id="overlay" class="overlay" hidden><div class="dialog"><div class="eyebrow" id="result-eyebrow">RUN COMPLETE</div><h2 id="result-title">Course cleared.</h2><p id="result-copy"></p><div id="result-stats"></div><button id="continue" class="primary">RACE AGAIN <span>↗</span></button><button id="menu-button" class="secondary">BACK TO GARAGE</button></div></section>
+    <div id="touch-controls" hidden><button data-control="left" aria-label="Steer left">◀</button><button data-control="right" aria-label="Steer right">▶</button><button data-control="leanLeft" aria-label="Lean left">LEAN ◀</button><button data-control="leanRight" aria-label="Lean right">LEAN ▶</button><button data-control="drift">DRIFT</button><button data-control="brake">BRAKE</button><button id="touch-boost" data-control="boost">B BOOST</button><button id="touch-fire" data-control="fire">MISSILE</button><button data-control="throttle">GO</button></div>
+  </main>
+</body></html>
